@@ -13,17 +13,19 @@ export function getConfig(): SystemConfig {
        createVpcEndpoints: true,
     },*/
     privateWebsite: false,
-    certificate : "",
+    certificate: "",
     bedrock: {
       enabled: true,
       region: SupportedRegion.US_EAST_1,
     },
     llms: {
       // sagemaker: [SupportedSageMakerModels.FalconLite]
+      enableSagemakerModels: false,
       sagemaker: [],
     },
     rag: {
       enabled: false,
+      enableEmbeddingModelsViaSagemaker: false,
       engines: {
         aurora: {
           enabled: false,
@@ -34,7 +36,7 @@ export function getConfig(): SystemConfig {
         kendra: {
           enabled: false,
           createIndex: false,
-          enterprise: false
+          enterprise: false,
         },
       },
       embeddingsModels: [
@@ -60,6 +62,7 @@ export function getConfig(): SystemConfig {
           dimensions: 1536,
         },
       ],
+      crossEncodingEnabled: false,
       crossEncoderModels: [
         {
           provider: "sagemaker",
