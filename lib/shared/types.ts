@@ -53,7 +53,7 @@ export enum SupportedBedrockRegion {
 
 export enum ModelInterface {
   LangChain = "langchain",
-  Idefics = "idefics",
+  MultiModal = "multimodal",
 }
 
 export enum Modality {
@@ -76,6 +76,8 @@ export interface SystemConfig {
   certificate?: string;
   domain?: string;
   privateWebsite?: boolean;
+  cfGeoRestrictEnable: boolean;
+  cfGeoRestrictList: [];
   bedrock?: {
     enabled?: boolean;
     region?: SupportedRegion;
@@ -85,6 +87,18 @@ export interface SystemConfig {
   llms: {
     enableSagemakerModels: boolean;
     sagemaker: SupportedSageMakerModels[];
+    sagemakerSchedule?: {
+      enabled?: boolean;
+      timezonePicker?: string;
+      enableCronFormat?: boolean;
+      sagemakerCronStartSchedule?: string;
+      sagemakerCronStopSchedule?: string;
+      daysForSchedule?: string;
+      scheduleStartTime?: string;
+      scheduleStopTime?: string;
+      enableScheduleEndDate?: boolean;
+      startScheduleEndDate?: string;
+    };
   };
   rag: {
     enabled: boolean;
